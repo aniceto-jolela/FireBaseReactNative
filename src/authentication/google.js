@@ -26,9 +26,8 @@ export default function GoogleAutenticacao() {
       signInWithCredential(Auth, credential)
         .then((e) => {
           console.log(e.user.providerData);
-          setEmail(e.user.email);
           dispatch(
-            dadosGoogle(e.user.photoURL, e.user.displayName, e.user.email)
+            dadosGoogle(e.user.photoURL, e.user.displayName, e.user.email,'Google')
           );
           dispatch(statusApp(true));
         })

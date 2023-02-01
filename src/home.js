@@ -20,7 +20,7 @@ export const Home = ({ navigation }) => {
       <Button
         title="Ver perfil"
         onPress={() => {
-          navigation.navigate("Profile", { name: "Jane" });
+          navigation.navigate("Profile");
         }}
       />
       <Logout/>

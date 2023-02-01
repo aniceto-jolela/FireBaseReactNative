@@ -1,4 +1,4 @@
-export default (state = "Principal", action) => {
+export default (state = "Google", action) => {
   switch (action.type) {
     case "dadosGoogle":
       return action.payload;

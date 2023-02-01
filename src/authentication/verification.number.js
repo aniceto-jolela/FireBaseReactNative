@@ -13,11 +13,13 @@ import {
   FirebaseRecaptchaBanner,
 } from "expo-firebase-recaptcha";
 import { getApp } from "firebase/app";
-import {
-  PhoneAuthProvider,
-  signInWithCredential,
-} from "firebase/auth";
+import { PhoneAuthProvider, signInWithCredential } from "firebase/auth";
 import Auth from "./auth.config";
+import { useDispatch } from "react-redux";
+import { dadosNumber } from "../../store/actions/dados.number.action";
+import { statusApp } from "../../store/actions/status.app.action";
+import { dadosEmailPassword } from "../../store/actions/dados.email.password.action";
+import { dadosGoogle } from "../../store/actions/dados.google.action";
 
 // Firebase references
 const app = getApp();
@@ -39,6 +41,7 @@ export default function VerificationNumber() {
   const firebaseConfig = app ? app.options : undefined;
   const [message, showMessage] = React.useState();
   const attemptInvisibleVerification = false;
+  const dispatch = useDispatch();
 
   return (
     <View style={{ padding: 20, marginTop: 50 }}>
@@ -49,7 +52,7 @@ export default function VerificationNumber() {
 
         // attemptInvisibleVerification
       />
-      <Text style={{ marginTop: 20 }}>Enter phone number</Text>
+      <Text style={{ marginTop: 20 }}>Digite o número do telefone</Text>
       <TextInput
         style={{ marginVertical: 10, fontSize: 17 }}
         placeholder="+1 999 999 9999"
@@ -60,7 +63,7 @@ export default function VerificationNumber() {
         onChangeText={setPhoneNumber}
       />
       <Button
-        title="Send Verification Code"
+        title="Enviar código"
         disabled={!phoneNumber}
         onPress={async () => {
           // The FirebaseRecaptchaVerifierModal ref implements the
@@ -81,7 +84,7 @@ export default function VerificationNumber() {
           }
         }}
       />
-      <Text style={{ marginTop: 20 }}>Enter Verification code</Text>
+      <Text style={{ marginTop: 20 }}>Digite o código de verificação</Text>
       <TextInput
         style={{ marginVertical: 10, fontSize: 17 }}
         editable={!!verificationId}
@@ -89,7 +92,7 @@ export default function VerificationNumber() {
         onChangeText={setVerificationCode}
       />
       <Button
-        title="Confirm Verification Code"
+        title="Verifica o Codigo"
         disabled={!verificationId}
         onPress={async () => {
           try {
@@ -98,7 +101,11 @@ export default function VerificationNumber() {
               verificationCode
             );
             await signInWithCredential(Auth, credential);
-            showMessage({ text: "Phone authentication successful 👍" });
+            showMessage({ text: "Número autenticado com sucesso 👍" });
+            dispatch(dadosNumber(phoneNumber, verificationCode, "NumberCode"));
+            dispatch(dadosGoogle("", "", "", ""));
+            dispatch(dadosEmailPassword("", "", ""));
+            dispatch(statusApp(true));
           } catch (err) {
             showMessage({ text: `Error: ${err.message}`, color: "red" });
           }

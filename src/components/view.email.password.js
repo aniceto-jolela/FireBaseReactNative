@@ -1,30 +1,36 @@
 import React from "react";
-import { Button, View, Text,StyleSheet, } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
+import Logout from "../../share/logout";
 
-export const ViewEmailPassword=()=> {
+export const ViewEmailPassword = () => {
+  const dados = useSelector((state) => state.DadosEmailPassword);
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Nome:</Text>
-      <Text>Email:</Text>
-      <Text>This is {route.params.name}'s profile</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>
+        Email: <Text style={styles.textIn}>{dados[0]}</Text>
+      </Text>
+      <Text style={styles.text}>
+        Password: <Text style={styles.textIn}>{dados[1]}</Text>
+      </Text>
 
-      <Button style={styles.button}>
-        <Text>Logout</Text>
-      </Button>
+      <Logout />
     </View>
   );
-}
-
+};
 
 const styles = StyleSheet.create({
-    button: {
-      margin: 10,
-      padding: 11,
-      width: 200,
-    },
-    logo: {
-      width: 200,
-      height: 160,
-    },
-  });
-  
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: -200,
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  textIn: {
+    fontSize: 14,
+  },
+});

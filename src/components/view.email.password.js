@@ -24,11 +24,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: -200,
+    marginTop: -50,
   },
   text: {
     fontSize: 20,
     marginBottom: 10,
+    backgroundColor: "#FFFFFF",
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 8,
   },
   textIn: {
     fontSize: 14,

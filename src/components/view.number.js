@@ -30,8 +30,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     marginBottom: 10,
+    color: "#FFFFFF",
   },
   textIn: {
     fontSize: 14,
+    color: "#FFFFFF",
   },
 });

@@ -3,7 +3,7 @@ import * as WebBrowser from "expo-web-browser";
 import { ResponseType } from "expo-auth-session";
 import * as Google from "expo-auth-session/providers/google";
 import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
-import { Button, View, Image, StyleSheet, Text } from "react-native";
+import { Button, View, Image, StyleSheet } from "react-native";
 import Auth from "./auth.config";
 import { useDispatch } from "react-redux";
 import { dadosGoogle } from "../../store/actions/dados.google.action";
@@ -12,7 +12,6 @@ import { statusApp } from "../../store/actions/status.app.action";
 WebBrowser.maybeCompleteAuthSession();
 
 export default function GoogleAutenticacao() {
-  const [email, setEmail] = React.useState("");
   const dispatch = useDispatch();
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
@@ -36,7 +35,6 @@ export default function GoogleAutenticacao() {
         .catch((err) => {
           console.log(err);
         });
-      console.log("CONSEGUISTE.");
     }
   }, [response]);
 
@@ -47,9 +45,8 @@ export default function GoogleAutenticacao() {
         source={require("../../assets/vecteezy_3d-social-media-icons-google_9428333_21.png")}
       />
 
-      <Text>Email : {email}</Text>
       <Button
-        disabled={!request}
+        disabled={response?.type === "success" ? true : false}
         title="Login"
         onPress={() => {
           promptAsync();
@@ -60,13 +57,9 @@ export default function GoogleAutenticacao() {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    margin: 10,
-    padding: 11,
-    width: 200,
-  },
   logo: {
     width: 200,
     height: 160,
+    marginBottom: 15,
   },
 });

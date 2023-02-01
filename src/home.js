@@ -1,11 +1,10 @@
 import React from "react";
 import { Button, View, Text, Image, StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
 import Logout from "../share/logout";
-import { dadosGoogle } from "../store/actions/dados.google.action";
+
 
 export const Home = ({ navigation }) => {
-  const dispatch = useDispatch();
+ 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <View>
@@ -22,7 +21,6 @@ export const Home = ({ navigation }) => {
         title="Ver perfil"
         onPress={() => {
           navigation.navigate("Profile", { name: "Jane" });
-          dispatch(dadosGoogle('Home Alfa'));
         }}
       />
       <Logout/>

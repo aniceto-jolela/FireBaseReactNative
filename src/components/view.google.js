@@ -5,7 +5,7 @@ import Logout from "../../share/logout";
 
 export const ViewGoogle = () => {
   const dados = useSelector((state) => state.DadosGoogle);
-  console.log(dados)
+
   return (
     <View style={styles.container}>
       <Image
@@ -14,8 +14,12 @@ export const ViewGoogle = () => {
           uri: dados[0],
         }}
       />
-      <Text style={styles.text}>Nome: {dados[1]}</Text>
-      <Text style={styles.text}>Email: {dados[2]}</Text>
+      <Text style={styles.text}>
+        Nome: <Text style={styles.textIn}>{dados[1]}</Text>
+      </Text>
+      <Text style={styles.text}>
+        Email: <Text style={styles.textIn}>{dados[2]}</Text>
+      </Text>
 
       <Logout />
     </View>
@@ -30,11 +34,16 @@ const styles = StyleSheet.create({
     marginTop: -200,
   },
   logo: {
-    width: 200,
-    height: 160,
+    width: 66,
+    height: 66,
+    marginBottom: 10,
+    borderRadius: 50,
   },
   text: {
     fontSize: 20,
     marginBottom: 10,
+  },
+  textIn: {
+    fontSize: 14,
   },
 });

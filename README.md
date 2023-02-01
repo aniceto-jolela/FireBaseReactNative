@@ -21,6 +21,8 @@ The purpose of this application is to login with the ``3 authentication models``
 2. Profile
 
 
+[🤖 Download Android app](https://expo.dev/artifacts/eas/9Myx366R2iXoCd1Xq6wGVq.apk)
+
 <details><summary>Installation mode</summary>
 <p>
 
@@ -82,15 +84,70 @@ The purpose of this application is to login with the ``3 authentication models``
 
 #### Imgs!
 
-<div align='center'>
-   <img src='assets/github/0.png' width='200px'>
-   <img src='assets/github/1.png' width='200px'>
-</div>
+```js
+- //Global Expo CLI
+   npm install -g expo-cli
 
-<img src='assets/github/2.jpg' width='400px'>
-<img src='assets/github/3.jpg' width='400px'>
-<img src='assets/github/4.jpg' width='400px'>
-<img src='assets/github/5.jpg' width='400px'>
+- //Checking CLI Version
+   expo --version
+   
+- //Create a new app
+    npx create-expo-app my-app
+
+```
+
+</p>
+</details>
+
+
+# 
+<details><summary>Build app</summary>
+<p>
+
+#### Creating your first build!
+
+[setup .aab](https://docs.expo.dev/build/setup/)
+
+```js
+1. npm install -g eas-cli
+2. eas login
+3. eas build:configure
+4. eas build --platform android  | eas build --platform ios | eas build --platform all
+5. eas build:list
+```
+
+#### Creating your first build!
+
+[setup .apk](https://docs.expo.dev/build-reference/apk/)
+
+modify the file ``eas.json`` 
+
+```json
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {}
+  }
+}
+
+
+```
+Installing your build
+```js
+eas build -p android --profile preview
+```
 
 </p>
 </details>

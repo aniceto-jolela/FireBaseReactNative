@@ -26,7 +26,7 @@ export default function EmailPassword() {
   const handleCreateAccount = async () => {
     await createUserWithEmailAndPassword(Auth, email, password)
       .then(() => {
-        Alert.alert("Usuário criado com sucesso!");
+        Alert.alert("Usuário criado com sucesso 👏🎊!");
         setEmail("");
         setPassword("");
       })
